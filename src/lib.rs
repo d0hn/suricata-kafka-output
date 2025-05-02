@@ -224,7 +224,7 @@ unsafe extern "C" fn output_write(
 unsafe extern "C" fn init_plugin() {
     let file_type = ffi::SCEveFileType::new(
         "eve-kafka-plugin",
-        output_init,
+        output_open,
         output_close,
         output_write,
     );
