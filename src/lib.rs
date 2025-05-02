@@ -227,8 +227,6 @@ unsafe extern "C" fn init_plugin() {
         output_init,
         output_close,
         output_write,
-        output_thread_init,
-        output_thread_deinit,
     );
     ffi::SCRegisterEveFileType(file_type);
 }
