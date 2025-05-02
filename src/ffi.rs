@@ -113,7 +113,7 @@ impl SCEveFileType {
 }
 
 extern "C" {
-    pub fn SCPluginRegisterFileType(filetype: *const SCEveFileType) -> bool;
+    pub fn SCRegisterEveFileType(filetype: *const SCEveFileType) -> bool;
 }
 
 // Convert a C string with a provided length to a Rust &str.
