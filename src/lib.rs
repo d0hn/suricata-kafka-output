@@ -222,9 +222,15 @@ unsafe extern "C" fn output_write(
 }
 
 unsafe extern "C" fn init_plugin() {
-    let file_type =
-        ffi::SCPluginFileType::new("kafka", output_open, output_close, output_write);
-    ffi::SCPluginRegisterFileType(file_type);
+    let file_type = ffi::SCEveFileType::new(
+        "eve-kafka-plugin",
+        output_init,
+        output_close,
+        output_write,
+        output_thread_init,
+        output_thread_deinit,
+    );
+    ffi::SCRegisterEveFileType(file_type);
 }
 
 #[no_mangle]
