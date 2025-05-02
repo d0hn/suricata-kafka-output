@@ -92,8 +92,28 @@ impl SCPluginFileType {
     }
 }
 
+impl SCEveFileType {
+    pub fn new(
+        name: &str,
+        open: InitFn,
+        close: DeinitFn,
+        write: WriteFn,
+    ) -> *const Self {
+        // Convert the name to C and forget.
+        let name = CString::new(name).unwrap().into_raw();
+        let file_type = SCEveFileType {
+            name,
+            open,
+            close,
+            write,
+            pad: [0, 0],
+        };
+        Box::into_raw(Box::new(file_type))
+    }
+}
+
 extern "C" {
-    pub fn SCPluginRegisterFileType(filetype: *const SCPluginFileType) -> bool;
+    pub fn SCPluginRegisterFileType(filetype: *const SCEveFileType) -> bool;
 }
 
 // Convert a C string with a provided length to a Rust &str.
