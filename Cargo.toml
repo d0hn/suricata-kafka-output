@@ -10,4 +10,4 @@ name = "kafka_output"
 
 [dependencies]
 rdkafka = "0.25"
-suricata = {version = "6.0.3-alpha", package = "suricata"}
+suricata = { version = "7.0.8" }
